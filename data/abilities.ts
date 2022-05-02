@@ -66,20 +66,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 184,
 	},
-//	slowmotion: {
-//		name: "Slow Motion",
-//
-//		onModifyPriority(priority, pokemon, target, move) {
-//			if (move.priority > 0) {
-//				move.priority === 0 - move.priority;
-//				this.debug('Slow Motion');
-//				return move.priority;
-//			} else {
-//				(move.priority === 0 + move.priority);
-//				return move.priority;
-//			}
-//		},
-//	},
 	aftermath: {
 		name: "Aftermath",
 		onDamagingHitOrder: 1,
@@ -2148,8 +2134,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				if (pokemon.hasType('Flying')) return false;
 				if (!pokemon.addType('Flying')) return false;
 				this.add('-start', pokemon, 'typeadd', 'Flying');
-			}
-			else if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
+			} else if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
 				 if (pokemon.hasType('Fire')) return false;
 				 if (!pokemon.addType('Fire')) return false;
 				 this.add('-start', pokemon, 'typeadd', 'Fire');
