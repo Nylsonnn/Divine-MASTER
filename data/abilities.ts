@@ -71,14 +71,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 
 		onModifyPriority(priority, pokemon, target, move) {
 			if (move.priority > 0) {
-				move.priority == 0 - move.priority;
-				this.debug('Slow Motion')
+				move.priority === 0 - move.priority;
+				this.debug('Slow Motion');
 				return move.priority;
 			} else {
-				(move.priority == 0 + move.priority); 
+				(move.priority === 0 + move.priority);
 				return move.priority;
 			}
-		}
+		},
 	},
 	aftermath: {
 		name: "Aftermath",
@@ -95,7 +95,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onResidualOrder: 28,
 		onResidualSubOrder: 2,
 		onWeather(target, source, effect) {
-			if (target.activeTurns && effect.id === 'raindance' || effect.id === 'primordialsea'){
+			if (target.activeTurns && effect.id === 'raindance' || effect.id === 'primordialsea') {
 				this.boost({spe: 1});
 			}
 		},
@@ -267,17 +267,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onDamagingHit(damage, target, source, move) {
 			if (target === source || move.category === 'Status' || move.type !== 'Dark') return;
 			return this.chainModify([1.2]);
-		},	
-			onModifyTypePriority: -1,
-			onModifyType(move, pokemon) {
-				const noModifyType = [
-					'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
-				];
-				if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
-					move.type = 'Dark';
-					move.pixilateBoosted = true;
-				}
-		}
+		},
+		onModifyTypePriority: -1,
+		onModifyType(move, pokemon) {
+			const noModifyType = [
+				'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'technoblast', 'terrainpulse', 'weatherball',
+			];
+			if (move.type === 'Normal' && !noModifyType.includes(move.id) && !(move.isZ && move.category !== 'Status')) {
+				move.type = 'Dark';
+				move.pixilateBoosted = true;
+			}
+		},
 	},
 	baddreams: {
 		onResidualOrder: 28,
@@ -488,26 +488,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 29,
 	},
-	honour: {
-		onBoost(boost, target, source, effect) {
-			if (source && target === source || source && target === target) return;
-			let showMsg = false;
-			let i: BoostID;
-			for (i in boost) {
-				if (boost[i]! < 0) {
-					delete boost[i];
-					showMsg = true;
-				}
-			}
-			if (showMsg && !(effect as ActiveMove).secondaries && effect.id !== 'octolock') {
-				this.add("-fail", target, "unboost", "[from] ability: Clear Body", "[of] " + target);
-			}
-		},
-		isBreakable: true,
-		name: "Honour",
-		rating: 2,
-		num: 29,
-	},
+	//honour: {
+	//	onBoost(boost, target, source, effect) {
+	//		if (source && target === source || source && target === target) return;
+	//		let showMsg = false;
+	//		let i: BoostID;
+	//		for (i in boost) {
+	//			if (boost[i]! < 0) {
+	//				delete boost[i];
+	//				showMsg = true;
+	//			}
+	//		}
+	//		if (showMsg && !(effect as ActiveMove).secondaries && effect.id !== 'octolock') {
+	//			this.add("-fail", target, "unboost", "[from] ability: Clear Body", "[of] " + target);
+	//		}
+	//	},
+	//	isBreakable: true,
+	//	name: "Honour",
+	//	rating: 2,
+	//	num: 29,
+	//},
 	cloudnine: {
 		onSwitchIn(pokemon) {
 			this.effectState.switchingIn = true;
@@ -602,7 +602,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					pokemon.addVolatile('flinch', this.effectState.target);
 				}
 			}
-		}
+		},
 	},
 	temptress: {
 		onStart(pokemon) {
@@ -612,8 +612,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					this.add('-ability', pokemon, 'Temptress');
 					target.addVolatile('attract', this.effectState.target);
 					activated = true;
+				}
 			}
-		}
 		},
 		name: "Temptress",
 		rating: 3.5,
@@ -1042,7 +1042,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onHit(target, source, move) {
 			return target.addVolatile('trapped', source, move, 'trapper');
 		},
-		name: "Hunter's Mark"
+		name: "Hunter's Mark",
 	},
 	maelstrom: {
 		onStart(source) {
@@ -1130,7 +1130,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	constriction: {
 		onBasePowerPriority: 21,
 		onBasePower(basePower, attacker, defender, move) {
-			if (move.volatileStatus == 'partiallyTrapped') {
+			if (move.volatileStatus === 'partiallyTrapped') {
 				return this.chainModify(1.3);
 			}
 		},
@@ -1246,7 +1246,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 49,
 	},
-	
 	flareboost: {
 		onBasePowerPriority: 19,
 		onBasePower(basePower, attacker, defender, move) {
@@ -2132,11 +2131,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 234,
 	},
 	galeglider: {
-	onStart(pokemon) {
-		if (['strongwinds'].includes(pokemon.effectiveWeather())) {
-			if (pokemon.hasType('Flying')) return false;
-			if (!pokemon.addType('Flying')) return false;
-			this.add('-start', pokemon, 'typeadd', 'Flying')
+		onStart(pokemon) {
+			if (['strongwinds'].includes(pokemon.effectiveWeather())) {
+				if (pokemon.hasType('Flying')) return false;
+				if (!pokemon.addType('Flying')) return false;
+				this.add('-start', pokemon, 'typeadd', 'Flying')
 			}
 		},
 		name: "Galeglider",
@@ -2148,8 +2147,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (['strongwinds'].includes(pokemon.effectiveWeather())) {
 				if (pokemon.hasType('Flying')) return false;
 				if (!pokemon.addType('Flying')) return false;
-				this.add('-start', pokemon, 'typeadd', 'Flying')
-				}
+			this.add('-start', pokemon, 'typeadd', 'Flying')
+			}
 			else if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
 				 if (pokemon.hasType('Fire')) return false;
 				 if (!pokemon.addType('Fire')) return false;
