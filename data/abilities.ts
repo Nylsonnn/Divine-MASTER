@@ -2158,12 +2158,12 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				if (pokemon.hasType('Electric')) return false;
 				if (!pokemon.addType('Electric')) return false;
 				this.add('-start', pokemon, 'typeadd', 'Electric');
-				}
-			},
-			name: "Survivalist",
-			rating: 4,
-			num: 234,
+			}
 		},
+		name: "Survivalist",
+		rating: 4,
+		num: 234,
+	},
 	cropduster: {
 		onSourceModifyAtkPriority: 5,
 		onSourceModifyAtk(atk, pokemon, target, move) {
@@ -2376,7 +2376,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	leechingspirit: {
 		onDamagingHit(damage, target, source, move) {
-				move.stab == 1;
+				move.stab === 1;
 		},
 		name: "Leech Spirit",
 		rating: 2,
@@ -2935,20 +2935,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 0,
 		num: 96,
 	},
-	unarmoured: {
-		onModifyTypePriority: 1,
-		onModifyType(move, pokemon) {
-			const noModifyType = [
-				'hiddenpower', 'judgment', 'multiattack', 'naturalgift', 'revelationdance', 'struggle', 'technoblast', 'terrainpulse', 'weatherball',
-			];
-			if (!(move.isZ && move.category !== 'Physical') && !noModifyType.includes(move.id)) {
-				crit: true;
-			}
-		},
-		name: "Unarmoured",
-		rating: 0,
-		num: 96,
-	},
 	oblivious: {
 		onUpdate(pokemon) {
 			if (pokemon.volatiles['attract']) {
@@ -3263,38 +3249,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 143,
 	},
-//	parasitic: {
-//		// upokecenter says this is implemented as an added secondary effect
-//		onModifyMove(move) {
-//			if (!move?.flags['contact'] || move.target === 'self') return;
-//			if (!move.secondaries) {
-//				move.secondaries = [];
-//			}
-//			move.condition.push({
-//				drain:[1,4],
-//				ability: this.dex.abilities.get('parasitic'),
-//			});
-//		},
-//		name: "Parasitic",
-//		rating: 2,
-//		num: 143,
-//	},
-//	vampiric: {
-//		// upokecenter says this is implemented as an added secondary effect
-//		onModifyMove(move) {
-//			if (!move?.flags['bite'] || move.target === 'self') return;
-//			if (!move.secondaries) {
-//				move.secondaries = [];
-//			}
-//			move.secondaries.push({
-//				drain:[1,2],
-//				ability: this.dex.abilities.get('parasitic'),
-//			});
-//		},
-//		name: "Parasitic",
-//		rating: 2,
-//		num: 143,
-//	},
 	nitrogenize: {
 		// upokecenter says this is implemented as an added secondary effect
 		onModifyMove(move) {
