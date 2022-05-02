@@ -66,20 +66,20 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 184,
 	},
-	slowmotion: {
-		name: "Slow Motion",
-
-		onModifyPriority(priority, pokemon, target, move) {
-			if (move.priority > 0) {
-				move.priority === 0 - move.priority;
-				this.debug('Slow Motion');
-				return move.priority;
-			} else {
-				(move.priority === 0 + move.priority);
-				return move.priority;
-			}
-		},
-	},
+//	slowmotion: {
+//		name: "Slow Motion",
+//
+//		onModifyPriority(priority, pokemon, target, move) {
+//			if (move.priority > 0) {
+//				move.priority === 0 - move.priority;
+//				this.debug('Slow Motion');
+//				return move.priority;
+//			} else {
+//				(move.priority === 0 + move.priority);
+//				return move.priority;
+//			}
+//		},
+//	},
 	aftermath: {
 		name: "Aftermath",
 		onDamagingHitOrder: 1,
@@ -488,7 +488,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 29,
 	},
-	//honour: {
+	//	honour: {
 	//	onBoost(boost, target, source, effect) {
 	//		if (source && target === source || source && target === target) return;
 	//		let showMsg = false;
@@ -507,7 +507,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	//	name: "Honour",
 	//	rating: 2,
 	//	num: 29,
-	//},
+	//	},
 	cloudnine: {
 		onSwitchIn(pokemon) {
 			this.effectState.switchingIn = true;
@@ -2135,7 +2135,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (['strongwinds'].includes(pokemon.effectiveWeather())) {
 				if (pokemon.hasType('Flying')) return false;
 				if (!pokemon.addType('Flying')) return false;
-				this.add('-start', pokemon, 'typeadd', 'Flying')
+				this.add('-start', pokemon, 'typeadd', 'Flying');
 			}
 		},
 		name: "Galeglider",
@@ -2147,39 +2147,33 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (['strongwinds'].includes(pokemon.effectiveWeather())) {
 				if (pokemon.hasType('Flying')) return false;
 				if (!pokemon.addType('Flying')) return false;
-			this.add('-start', pokemon, 'typeadd', 'Flying')
+				this.add('-start', pokemon, 'typeadd', 'Flying');
 			}
 			else if (['sunnyday', 'desolateland'].includes(pokemon.effectiveWeather())) {
 				 if (pokemon.hasType('Fire')) return false;
 				 if (!pokemon.addType('Fire')) return false;
-				 this.add('-start', pokemon, 'typeadd', 'Fire')
-				 }
-			else if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
+				 this.add('-start', pokemon, 'typeadd', 'Fire');
+			} else if (['raindance', 'primordialsea'].includes(pokemon.effectiveWeather())) {
 				 if (pokemon.hasType('Water')) return false;
 				 if (!pokemon.addType('Water')) return false;
-				 this.add('-start', pokemon, 'typeadd', 'Water')
-				 }
-			else if (['sandstorm'].includes(pokemon.effectiveWeather())) {
+				 this.add('-start', pokemon, 'typeadd', 'Water');
+			} else if (['sandstorm'].includes(pokemon.effectiveWeather())) {
 				 if (pokemon.hasType('Rock')) return false;
 				 if (!pokemon.addType('Rock')) return false;
-				 this.add('-start', pokemon, 'typeadd', 'Rock')
-				 }
-			else if (['hail'].includes(pokemon.effectiveWeather())) {
+				 this.add('-start', pokemon, 'typeadd', 'Rock');
+			} else if (['hail'].includes(pokemon.effectiveWeather())) {
 				 if (pokemon.hasType('Ice')) return false;
 				 if (!pokemon.addType('Ice')) return false;
-				 this.add('-start', pokemon, 'typeadd', 'Ice')
-				 }
-			else if (['deepfog'].includes(pokemon.effectiveWeather())) {
+				 this.add('-start', pokemon, 'typeadd', 'Ice');
+			} else if (['deepfog'].includes(pokemon.effectiveWeather())) {
 				if (pokemon.hasType('Ghost')) return false;
 				if (!pokemon.addType('Ghost')) return false;
-				this.add('-start', pokemon, 'typeadd', 'Ghost')
-				}
-			else if (['thunderstorm'].includes(pokemon.effectiveWeather())) {
+				this.add('-start', pokemon, 'typeadd', 'Ghost');
+			} else if (['thunderstorm'].includes(pokemon.effectiveWeather())) {
 				if (pokemon.hasType('Electric')) return false;
 				if (!pokemon.addType('Electric')) return false;
-				this.add('-start', pokemon, 'typeadd', 'Electric')
-				}	
-			
+				this.add('-start', pokemon, 'typeadd', 'Electric');
+				}
 			},
 			name: "Survivalist",
 			rating: 4,
