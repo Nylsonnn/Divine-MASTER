@@ -3363,7 +3363,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onModifyPriority(priority, target, self, move) {
 			if (move?.priority >= 1) {
 				priority = 0;
-         }
+			}
 		},
 		name: "Chronomaster",
 		rating: 4,
