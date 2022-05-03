@@ -1597,7 +1597,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		onModifySpDPriority: 2,
 		onModifySpD(spd, pokemon) {
-				return this.chainModify(1.3);
+			return this.chainModify(1.3);
 		},
 		num: 538,
 		gen: 5,
@@ -1610,7 +1610,7 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		onModifyDefPriority: 2,
 		onModifyDef(def, pokemon) {
-				return this.chainModify(1.3);
+			return this.chainModify(1.3);
 		},
 		num: 538,
 		gen: 5,
@@ -1633,11 +1633,11 @@ export const Items: {[itemid: string]: ItemData} = {
 		},
 		onModifyAtkPriority: 2,
 		onModifyAtk(atk, pokemon) {
-				return this.chainModify(1.1);
+			return this.chainModify(1.1);
 		},
 		onModifyDefPriority: 2,
 		onModifyDef(def, pokemon) {
-				return this.chainModify(1.1);
+			return this.chainModify(1.1);
 		},
 		num: 538,
 		gen: 5,
