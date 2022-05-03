@@ -2376,7 +2376,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	leechingspirit: {
 		onDamagingHit(damage, target, source, move) {
-				move.stab === 1;
+			move.stab == 1;
 		},
 		name: "Leech Spirit",
 		rating: 2,
@@ -3553,7 +3553,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.heal(target.baseMaxhp);
 				return null;
 			}
-		}
+		},
 	},
 	chloromancer: {
 		onWeather(target, source, effect) {
@@ -4207,9 +4207,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					sourceBoosts[i] = source.boosts[i];
 				}
 
-			source.setBoost(targetBoosts);
+			    source.setBoost(targetBoosts);
 			}
-	},
+	    },
 		name: "Betrayal",
 		rating: 3.5,
 		num: 220,
@@ -4222,7 +4222,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 				this.debug("Bodyguard redirected target of move");
 				return this.effectState.target;
 			}
-		}
+		},
 	},
 	soundproof: {
 		onTryHit(target, source, move) {
@@ -4414,7 +4414,7 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			if (move.type === 'Flying') {
 				this.debug('Avian boost');
 				return this.chainModify(1.5);
-			}
+			    }
 		},
 		onModifySpAPriority: 5,
 		onModifySpA(atk, attacker, defender, move) {
@@ -4676,9 +4676,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			// and show messages when activating against it.
 			source.trySetStatus(status, target, {status: status.id, id: 'synchronize'} as Effect);
 		},
-			onResidualOrder: 5,
-			onResidualSubOrder: 3,
-			onResidual(pokemon) {
+		onResidualOrder: 5,
+		onResidualSubOrder: 3,
+		onResidual(pokemon) {
 			if (pokemon.hp && pokemon.status) {
 				this.debug('false positive');
 				this.add('-activate', pokemon, 'ability: False Positive');
@@ -4693,9 +4693,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		onResidualOrder: 5,
 		onResidualSubOrder: 3,
 		onResidual(target) {
-		if (this.randomChance(3, 10)) {
-			target.trySetStatus('fer', target);
-		}
+		    if (this.randomChance(3, 10)) {
+			    target.trySetStatus('fer', target);
+		    }
 		},
 		name: 'Fear Aura',
 		rating: 2,
@@ -5331,7 +5331,6 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 					this.debug('Stand Off boost');
 					return this.chainModify(1.2);
 				}
-
 			}
 		},
 		name: "Stand off",
