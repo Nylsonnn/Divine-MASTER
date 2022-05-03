@@ -4201,14 +4201,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			const sourceBoosts: SparseBoostsTable = {};
 
 			if (!this.effectState.target.hp) {
-			let i: BoostID;
-			for (i in target.boosts) {
-				targetBoosts[i] = target.boosts[i];
-				sourceBoosts[i] = source.boosts[i];
-			}
+				let i: BoostID;
+				for (i in target.boosts) {
+					targetBoosts[i] = target.boosts[i];
+					sourceBoosts[i] = source.boosts[i];
+				}
 
 			source.setBoost(targetBoosts);
-		}
+			}
 	},
 		name: "Betrayal",
 		rating: 3.5,
