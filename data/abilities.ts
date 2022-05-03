@@ -2375,8 +2375,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		num: 64,
 	},
 	leechingspirit: {
-		onDamagingHit(damage, target, source, move) {
-			move.stab == 1;
+		onModifyMove(damage, target, source, move) {
+			move.stab = 2;
 		},
 		name: "Leech Spirit",
 		rating: 2,
@@ -3361,7 +3361,9 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	},
 	chronomaster: {
 		onModifyPriority(priority, target, self, move) {
-			if (move?.priority >= 1) return priority = 0;
+			if (move?.priority >= 1) {
+                priority = 0;
+            }
 		},
 		name: "Chronomaster",
 		rating: 4,
