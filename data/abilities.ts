@@ -3362,8 +3362,8 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 	chronomaster: {
 		onModifyPriority(priority, target, self, move) {
 			if (move?.priority >= 1) {
-                priority = 0;
-            }
+				priority = 0;
+         }
 		},
 		name: "Chronomaster",
 		rating: 4,
