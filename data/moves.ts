@@ -9665,7 +9665,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					this.debug(move.name + "'s type changed to Electric");
 				}
 			},
-		},	
+		},
 		secondary: null,
 		target: "all",
 		type: "Electric",
@@ -9687,10 +9687,10 @@ export const Moves: {[moveid: string]: MoveData} = {
 			duration: 0,
 			onResidual(target, source, sourceEffect) {
 				if (target.hasType('Water')) {
-				target.heal(target.maxhp / 8);
-			}
+					target.heal(target.maxhp / 8);
+				}
+			},
 		},
-	},
 		secondary: null,
 		target: "all",
 		type: "Water",
@@ -11784,12 +11784,12 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onHit(target, source) {
 				const result = this.random(2);
 				if (result === 0) {
-					this.boost({atk: 1})
+					this.boost({atk: 1});
 				} else {
-					this.boost({def: 1})
+					this.boost({def: 1});
 				}
+			},
 		},
-	},
 		target: "normal",
 		type: "Steel",
 		contestType: "Cool",
@@ -11826,8 +11826,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1},
 		secondary: {
 			chance: 20,
-			status: 'fer'
-			},
+			status: 'fer',
+		},
 		target: "normal",
 		type: "Fairy",
 		contestType: "Cool",
@@ -14050,61 +14050,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {effect: 'clearnegativeboost'},
 		contestType: "Cute",
 	},
-//	scaleshield: {
-//		num: 182,
-//		accuracy: true,
-//		basePower: 0,
-//		category: "Status",
-//		name: "Scale Shield",
-//		pp: 20,
-//		priority: 6,
-//		flags: {},
-//		stallingMove: true,
-//		volatileStatus: 'protect',
-//		onPrepareHit(pokemon) {
-//			return !!this.queue.willAct() && this.runEvent('StallMove', pokemon);
-//		},
-//		onHit(pokemon) {
-//			pokemon.addVolatile('stall');
-//		},
-//		condition: {
-//			duration: 1,
-//			onStart(target) {
-//				this.add('-singleturn', target, 'Scale Shield');
-//			},
-//			onTryHitPriority: 3,
-//			onTryHit(target, source, move) {
-//				if (!move.flags['protect']) {
-//					if (['gmaxoneblow', 'gmaxrapidflow'].includes(move.id)) return;
-//					if (move.isZ || move.isMax) target.getMoveHitData(move).zBrokeProtect = true;
-//					return;
-//				}
-//				if (move.smartTarget) {
-//					move.smartTarget = false;
-//				} else {
-//					this.add('-activate', target, 'move: Scale Shield');
-//				}
-//				const lockedmove = source.getVolatile('lockedmove');
-//				if (lockedmove) {
-//					// Outrage counter is reset
-//					if (source.volatiles['lockedmove'].duration === 2) {
-//						delete source.volatiles['lockedmove'];
-//					}
-//				}
-//				return this.NOT_FAIL;
-//			},
-//				if (totaldef && totaldef <= totalspd) {
-//					this.boost({def: 1});
-//				} else if (totalspd) { 
-//					this.boost({spd: 1});
-//				}
-//		},
-//		secondary: null,
-//		target: "self",
-//		type: "Dragon",
-//		zMove: {effect: 'clearnegativeboost'},
-//		contestType: "Cute",
-//	},
 	psybeam: {
 		num: 60,
 		accuracy: 100,
