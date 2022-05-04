@@ -18362,7 +18362,7 @@ export const Pokedex: {[speciesid: string]: SpeciesData} = {
 		color: "Gray",
 		eggGroups: ["Mineral"],
 	},
-    voodoom: {
+	voodoom: {
 		num: 1066,
 		name: "Voodoom",
 		types: ["Ghost", "Dark"],
