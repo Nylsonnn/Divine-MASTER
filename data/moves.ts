@@ -15472,7 +15472,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {snatch: 1, heal: 1},
 		heal: [1, 4],
 		boosts: {
-			accuracy: 1
+			accuracy: 1,
 		},
 		self: {
 			volatileStatus: 'roost',
@@ -17518,7 +17518,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 				if (pokemon.hasItem('heavydutyboots')) return;
 				const typeMod = this.clampIntRange(pokemon.runEffectiveness(this.dex.getActiveMove('stealthrock')), -6, 6);
 				this.damage(pokemon.maxhp * Math.pow(2, typeMod) / 8);
-				},
+			},
 		},
 		secondary: null,
 		target: "foeSide",
@@ -17826,8 +17826,8 @@ export const Moves: {[moveid: string]: MoveData} = {
 				this.add('-sidestart', side, 'move: Gunpowder');
 			},
 			onModifyMove(move, pokemon, target) {
-				if (move.type == 'Fire') move.accuracy == true;
-			}
+				if (move.type === 'Fire') move.accuracy === true;
+			},
 		},
 		secondary: null,
 		target: "foeSide",
@@ -20257,7 +20257,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		name: "Wyvern Blast",
 		pp: 5,
 		priority: 0,
-		flags: { protect: 1, mirror: 1},
+		flags: {protect: 1, mirror: 1},
 		secondary: {
 			chance: 20,
 			volatileStatus: 'flinch',
@@ -20956,4 +20956,4 @@ export const Moves: {[moveid: string]: MoveData} = {
 		type: "Electric",
 		contestType: "Cool",
 	},
-}
+};
