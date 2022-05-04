@@ -1809,7 +1809,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 	swampkick: {
 		num: 61,
 		accuracy: 100,
-		basePower:75,
+		basePower: 75,
 		category: "Physical",
 		name: "Swamp Kick",
 		pp: 20,
@@ -3133,7 +3133,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 		flags: {protect: 1, mirror: 1},
 		secondary: {
 			chance: 30,
-			status: 'par'
+			status: 'par',
 		},
 		target: "allAdjacentFoes",
 		type: "Fairy",
@@ -7777,7 +7777,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 			onBeforeMove(pokemon, target, move) {
 				if (move.flags['gravity'] && !move.isZ) {
 					this.add('cant', pokemon, 'move: Stalagtites', move);
-					this.damage(pokemon.maxhp / 8)
+					this.damage(pokemon.maxhp / 8);
 					return false;
 				}
 			},
@@ -9665,8 +9665,7 @@ export const Moves: {[moveid: string]: MoveData} = {
 					this.debug(move.name + "'s type changed to Electric");
 				}
 			},
-		},
-		
+		},	
 		secondary: null,
 		target: "all",
 		type: "Electric",
