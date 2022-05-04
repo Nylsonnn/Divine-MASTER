@@ -5,6 +5,7 @@
  * @license MIT
  */
 
+@typescript-eslint/no-unnecessary-type-assertion: ["error"]
 import * as defaults from '../config/config-example';
 import type {GroupInfo, EffectiveGroupSymbol} from './user-groups';
 import {ProcessManager} from '../lib';
