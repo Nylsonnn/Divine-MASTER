@@ -17810,31 +17810,6 @@ export const Moves: {[moveid: string]: MoveData} = {
 		zMove: {boost: {def: 1}},
 		contestType: "Cool",
 	},
-	gunpowder: {
-		num: 446,
-		accuracy: true,
-		basePower: 0,
-		category: "Status",
-		name: "Gunpowder",
-		pp: 20,
-		priority: 0,
-		flags: {reflectable: 1},
-		sideCondition: 'gunpowder',
-		condition: {
-			// this is a side condition
-			onSideStart(side) {
-				this.add('-sidestart', side, 'move: Gunpowder');
-			},
-			onModifyMove(move, pokemon, target) {
-				if (move.type === 'Fire') move.accuracy === true;
-			},
-		},
-		secondary: null,
-		target: "foeSide",
-		type: "Fire",
-		zMove: {boost: {def: 1}},
-		contestType: "Cool",
-	},
 	steameruption: {
 		num: 592,
 		accuracy: 95,
