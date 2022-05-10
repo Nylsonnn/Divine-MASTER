@@ -573,7 +573,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			switch (target?.effectiveWeather()) {
 			case 'deepfog':
 				if (move.type !== 'Ghost') {
-					return move.accuracy(0.67);
+						move.accuracy === 0.67;
 				}
 			}
 		},
@@ -620,7 +620,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			switch (target?.effectiveWeather()) {
 			case 'primordialsea':
 				if (move.type === 'Water') {
-					return move.accuracy(0.67);
+						move.accuracy === 0.67;
 				}
 			}
 		},
@@ -706,7 +706,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			switch (target?.effectiveWeather()) {
 			case 'desolateland':
 				if (move.type === 'Fire') {
-					return move.accuracy(0.67);
+						move.accuracy === 0.67;
 				}
 			}
 		},
@@ -781,7 +781,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			switch (target?.effectiveWeather()) {
 			case 'hail':
 				if (move.type === 'Ice') {
-					return move.accuracy(0.67);
+						move.accuracy === 0.67;
 				}
 			}
 		},
@@ -820,7 +820,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			switch (target?.effectiveWeather()) {
 			case 'hail':
 				if (move.type === 'Electric') {
-					move.accuracy = true;
+						move.accuracy === true;
 				}
 			}
 		},
