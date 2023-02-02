@@ -866,6 +866,29 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4.5,
 		num: 190,
 	},
+	Constellation: {
+		onStart(source) {
+			this.field.setWeather('desolateland');
+		},
+		onAnySetWeather(target, source, weather) {
+			const strongWeathers = ['desolateland', 'primordialsea', 'deltastream'];
+			if (this.field.getWeather().id === 'desolateland' && !strongWeathers.includes(weather.id)) return false;
+		},
+		onEnd(pokemon) {
+			if (this.field.weatherState.source !== pokemon) return;
+			for (const target of this.getAllActive()) {
+				if (target === pokemon) continue;
+				if (target.hasAbility('desolateland')) {
+					this.field.weatherState.source = target;
+					return;
+				}
+			}
+			this.field.clearWeather();
+		},
+		name: "Constellation",
+		rating: 4.5,
+		num: 190,
+	},
 	disguise: {
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
@@ -1371,6 +1394,46 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 3.5,
 		num: 218,
 	},
+	sunrise: {
+		onTargetModifyDamage(damage, source, target, move) {
+			let mod = 1;
+			if (target.type === 'Ghost' || target.type === 'Dark') mod *= 2;
+			return this.chainModify(mod);
+		},
+		isBreakable: true,
+		name: "Sunrise",
+		rating: 3.5,
+		num: 218,
+	},
+	photonic: {
+		onSourceModifyDamage(damage, source, target, move) {
+			let mod = 1;
+			if (move.type === 'Dark') mod *= 2;
+			return this.chainModify(mod);
+		},
+		onModifyAtkPriority: 5,
+		onModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Fire' || move.type === 'Electric') {
+				this.debug('Photonic boost');
+				return this.chainModify(1.3);
+			}
+		},
+		onModifySpAPriority: 5,
+		onModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Fire' || move.type === 'Electric') {
+				this.debug('Steelworker boost');
+				return this.chainModify(1.3);
+			}
+		},
+		name: "Steelworker",
+		rating: 3.5,
+		num: 200,
+		isBreakable: true,
+		name: "Photonic",
+		rating: 3.5,
+		num: 218,
+	},
+	
 	gaseous: {
 		onSourceModifyDamage(damage, source, target, move) {
 			let mod = 1;
@@ -2186,6 +2249,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2.5,
 		num: 160,
 	},
+	noxiousskin: {
+		onDamagingHitOrder: 1,
+		onDamagingHit(damage, target, source, move) {
+			if (this.checkMoveMakesContact(move, source, target, true)) {
+				this.damage(source.baseMaxhp / 8, source, target);
+			}
+		},
+		name: "Noxious Skin",
+		rating: 2.5,
+		num: 160,
+	},
 	truesight: {
 		name: "Truesight",
 		onModifyMovePriority: -5,
@@ -2887,6 +2961,27 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			return accuracy;
 		},
 		name: "No Guard",
+		rating: 4,
+		num: 99,
+	},
+	aquapotent: {
+		onAnyInvulnerabilityPriority: 1,
+		onAnyInvulnerability(target, source, move) {
+			if (move && (source === this.effectState.target || target === this.effectState.target)) return 0;
+		},
+		onAnyAccuracy(accuracy, target, source, move) {
+			if (move && (source === this.effectState.target || target === this.effectState.target)) && move.type === 'Water'  {
+				return true;
+			}
+			return accuracy;
+		},
+		onModifyAtk(atk, attacker, defender, move) {
+			if(move.type === 'Water') {
+			this.debug('Aquapotent boost');
+			return this.chainModify(1.2);
+			},
+		},
+		name: "Aquapotent",
 		rating: 4,
 		num: 99,
 	},
@@ -4002,6 +4097,13 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 1,
 		num: 75,
 	},
+	unarmored: {
+		onCriticalHit: true,
+		isBreakable: true,
+		name: "Unarmored",
+		rating: 1,
+		num: 75,
+	},
 	shielddust: {
 		onModifySecondaries(secondaries) {
 			this.debug('Shield Dust prevent secondary');
@@ -4793,6 +4895,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		},
 		isBreakable: true,
 		name: "Thick Fat",
+		rating: 3.5,
+		num: 47,
+	},
+	lunarempress: {
+		onSourceModifyAtkPriority: 6,
+		onSourceModifyAtk(atk, attacker, defender, move) {
+			if (move.type === 'Ghost' || move.type === 'Dark') {
+				this.debug('Lunar Empress weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		onSourceModifySpAPriority: 5,
+		onSourceModifySpA(atk, attacker, defender, move) {
+			if (move.type === 'Ghost' || move.type === 'Dark') {
+				this.debug('Lunar Empress weaken');
+				return this.chainModify(0.5);
+			}
+		},
+		isBreakable: true,
+		name: "Lunar Empresst",
 		rating: 3.5,
 		num: 47,
 	},
