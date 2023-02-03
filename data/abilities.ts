@@ -1191,6 +1191,11 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 226,
 	},
+	divination: {
+		onStart(source) {
+			this.add('-start', source, 'move: Future Sight');
+		},		
+	},
 	emergencyexit: {
 		onEmergencyExit(target) {
 			if (!this.canSwitch(target.side) || target.forceSwitchFlag || target.switchFlag) return;
