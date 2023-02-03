@@ -508,7 +508,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 		effectType: 'Weather',
 		duration: 5,
 		onTryMovePriority: 2,
-		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (defender.hasItem('utilityumbrella')) return;
 			if (move.type === 'Normal') {
@@ -538,7 +537,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		effectType: 'Weather',
 		duration: 5,
 		durationCallback(source, effect) {
-			if (source?.hasItem('galehorn')) {
+			if (source?.hasItem('damprock')) {
 				return 8;
 			}
 			return 5;
@@ -581,12 +580,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 				this.add('-weather', 'DeepFog', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
 				this.add('-weather', 'DeepFog');
-			}
-		},
-		onEffectiveness(typeMod, target, type, move) {
-			if (move && move.effectType === 'Move' && move.category !== 'Status' && type === 'Flying' && typeMod > 0) {
-				this.add('-activate', '', 'StrongWinds');
-				return 0;
 			}
 		},
 		onModifySpe(spe, pokemon) {
