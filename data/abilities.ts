@@ -1005,6 +1005,25 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 2,
 	},
+	atmokinesis: {
+		onStart(source) {
+			this.field.setWeather('overcast');
+		},
+		onModifyWeather(damage, source, target) {
+			this.damage(source.baseMaxhp / 8, source, target);
+		},
+		name: "Atmokinesis",
+		rating: 3,
+		num: 253,
+	},
+	calculation: {
+		onStart(source) {
+			this.field.setPseudoWeather('trickroom');
+		},
+		name: "Calculation",
+		rating: 3,
+		num: 2,
+	},
 	tikimask: {
 		onDamagePriority: 1,
 		onDamage(damage, target, source, effect) {
