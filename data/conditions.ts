@@ -596,7 +596,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			switch (target?.effectiveWeather()) {
 			case 'deepfog':
 				if (move.type !== 'Ghost') {
-					move.accuracy === 0.67;
+					return move.accuracy === 0.67;
 				}
 			}
 		},
