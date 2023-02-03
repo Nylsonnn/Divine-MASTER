@@ -532,14 +532,6 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldEnd() {
 			this.add('-weather', 'none');
 		},
-		onModifyMove(move, pokemon, target) {
-			switch (target?.effectiveWeather()) {
-			case 'overcast':
-				if (move.effectType === 'Weather') {
-						move.accuracy === false
-					;
-				}
-			}
 	},
 	strongwinds: {
 		name: 'StrongWinds',
