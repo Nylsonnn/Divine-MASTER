@@ -507,6 +507,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 		name: 'Overcast',
 		effectType: 'Weather',
 		duration: 5,
+		onTryMovePriority: 2,
 		},
 		onWeatherModifyDamage(damage, attacker, defender, move) {
 			if (defender.hasItem('utilityumbrella')) return;
@@ -518,9 +519,9 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldStart(field, source, effect) {
 			if (effect?.effectType === 'Ability') {
 				if (this.gen <= 5) this.effectState.duration = 0;
-				this.add('-weather', 'RainDance', '[from] ability: ' + effect.name, '[of] ' + source);
+				this.add('-weather', 'Overcast', '[from] ability: ' + effect.name, '[of] ' + source);
 			} else {
-				this.add('-weather', 'RainDance');
+				this.add('-weather', 'Overcast');
 			}
 		},
 		onFieldResidualOrder: 1,
@@ -531,6 +532,14 @@ export const Conditions: {[k: string]: ConditionData} = {
 		onFieldEnd() {
 			this.add('-weather', 'none');
 		},
+		onModifyMove(move, pokemon, target) {
+			switch (target?.effectiveWeather()) {
+			case 'overcast':
+				if (move.effectType === 'Weather') {
+						move.accuracy === false
+					;
+				}
+			}
 	},
 	strongwinds: {
 		name: 'StrongWinds',
@@ -617,7 +626,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-weather', 'none');
 		},
 	},
-	  c   : {
+	primordialsea  : {
 		name: 'PrimordialSea',
 		effectType: 'Weather',
 		duration: 0,
@@ -649,7 +658,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			switch (target?.effectiveWeather()) {
 			case 'primordialsea':
 				if (move.type === 'Water') {
-						move.accuracy === 0.67;
+						move.accuracy === true;
 				}
 			}
 		},
@@ -735,7 +744,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			switch (target?.effectiveWeather()) {
 			case 'desolateland':
 				if (move.type === 'Fire') {
-						move.accuracy === 0.67;
+						move.accuracy === true;
 				}
 			}
 		},
