@@ -503,6 +503,35 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-weather', 'none');
 		},
 	},
+	overcast: {
+		name: 'Overcast',
+		effectType: 'Weather',
+		duration: 5,
+		},
+		onWeatherModifyDamage(damage, attacker, defender, move) {
+			if (defender.hasItem('utilityumbrella')) return;
+			if (move.type === 'Normal') {
+				this.debug('overcast normal boost');
+				return this.chainModify(1.2);
+			}
+		},
+		onFieldStart(field, source, effect) {
+			if (effect?.effectType === 'Ability') {
+				if (this.gen <= 5) this.effectState.duration = 0;
+				this.add('-weather', 'RainDance', '[from] ability: ' + effect.name, '[of] ' + source);
+			} else {
+				this.add('-weather', 'RainDance');
+			}
+		},
+		onFieldResidualOrder: 1,
+		onFieldResidual() {
+			this.add('-weather', 'Overcast', '[upkeep]');
+			this.eachEvent('Weather');
+		},
+		onFieldEnd() {
+			this.add('-weather', 'none');
+		},
+	},
 	strongwinds: {
 		name: 'StrongWinds',
 		effectType: 'Weather',
@@ -588,7 +617,7 @@ export const Conditions: {[k: string]: ConditionData} = {
 			this.add('-weather', 'none');
 		},
 	},
-	primordialsea: {
+	  c   : {
 		name: 'PrimordialSea',
 		effectType: 'Weather',
 		duration: 0,
