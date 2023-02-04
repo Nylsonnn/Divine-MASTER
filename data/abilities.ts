@@ -47,6 +47,14 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 4,
 		num: 91,
 	},
+	leechingspirit: {
+		onModifyMove(move, target) {
+			target(move.stab) = 1;
+		},
+		name: "Leeching Spirit",
+		rating: 4,
+		num: 91,
+	},
 	aerilate: {
 		onModifyTypePriority: -1,
 		onModifyType(move, pokemon) {
@@ -3165,6 +3173,36 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 143,
 	},
+	parasitic: {
+		onModifyMove(move) {
+			if (!move?.flags['contact']) return;
+			if (!move.drain) {
+				move.drain = [];
+			}
+			move.drain.push({
+				drain :[1,4],
+				ability: this.dex.abilities.get('parasitic'),
+			});
+		},
+		name: "Parasitic",
+		rating: 2,
+		num: 142,
+	},
+	vampiric: {
+		onModifyMove(move) {
+			if (!move?.flags['bite']) return;
+			if (!move.drain) {
+				move.drain = [];
+			}
+			move.drain.push({
+				drain :[1,2],
+				ability: this.dex.abilities.get('vampiric'),
+			});
+		},
+		name: "Vampiric",
+		rating: 2,
+		num: 142,
+	},
 	parentalbond: {
 		onPrepareHit(source, target, move) {
 			if (move.category === 'Status' || move.selfdestruct || move.multihit) return;
@@ -3463,6 +3501,17 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 			}
 		},
 		name: "Prankster",
+		rating: 4,
+		num: 158,
+	},
+	slowmotion: {
+		onModifyPriority(priority, pokemon, target, move) {
+			if (move?.priority != 0) {
+				move.priority = 0 - move.priority
+				return priority ;
+			}
+		},
+		name: "Slow Motion",
 		rating: 4,
 		num: 158,
 	},
