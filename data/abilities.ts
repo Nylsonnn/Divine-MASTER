@@ -474,26 +474,26 @@ export const Abilities: {[abilityid: string]: AbilityData} = {
 		rating: 2,
 		num: 29,
 	},
-	//	honour: {
-	//	onBoost(boost, target, source, effect) {
-	//		if (source && target === source || source && target === target) return;
-	//		let showMsg = false;
-	//		let i: BoostID;
-	//		for (i in boost) {
-	//			if (boost[i]! < 0) {
-	//				delete boost[i];
-	//				showMsg = true;
-	//			}
-	//		}
-	//		if (showMsg && !(effect as ActiveMove).secondaries && effect.id !== 'octolock') {
-	//			this.add("-fail", target, "unboost", "[from] ability: Clear Body", "[of] " + target);
-	//		}
-	//	},
-	//	isBreakable: true,
-	//	name: "Honour",
-	//	rating: 2,
-	//	num: 29,
-	//	},
+	honour: {
+		onBoost(boost, target, source, effect) {
+			if (source && target === source || target && source === target) return;
+				let showMsg = false;
+				let i: BoostID;
+				for (i in boost) {
+					if (boost[i]! < 0) {
+						delete boost[i];
+						showMsg = true;
+					}
+			}
+			if (showMsg && !(effect as ActiveMove).secondaries && effect.id !== 'octolock') {
+				this.add("-fail", target, "unboost", "[from] ability: Clear Body", "[of] " + target);
+			}
+		},
+		isBreakable: true,
+		name: "Honour",
+		rating: 2,
+		num: 29,
+	},
 	cloudnine: {
 		onSwitchIn(pokemon) {
 			this.effectState.switchingIn = true;
